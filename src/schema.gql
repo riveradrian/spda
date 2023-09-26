@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Task {
+  """"""
+  id: Int!
+  title: String!
+  description: String!
+  status: String!
+}
+
+type Query {
+  tasks: [Task!]!
+  task(id: Int!): Task!
+}
+
+type Mutation {
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: Int!): Task!
+}
+
+input CreateTaskInput {
+  """Example field (placeholder)"""
+  id: Int!
+  title: String!
+  description: String!
+  status: String!
+}
+
+input UpdateTaskInput {
+  id: Int!
+  title: String
+  description: String
+  status: String
+}
