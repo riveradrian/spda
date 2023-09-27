@@ -11,20 +11,12 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   load: [configuration],
-    //   isGlobal: true,
-    // }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    // TypeOrmModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   useClass: TypeOrmConfigService,
-    // }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
