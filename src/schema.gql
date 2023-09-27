@@ -2,36 +2,87 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Task {
-  """"""
-  id: Int!
-  title: String!
+input CreateTaskInput {
   description: String!
   status: String!
+  title: String!
+  userId: Float!
 }
 
-type Query {
-  tasks: [Task!]!
-  task(id: Int!): Task!
+input CreateUserInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 type Mutation {
   createTask(createTaskInput: CreateTaskInput!): Task!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  removeTask(id: Int!): String!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
-  removeTask(id: Int!): Task!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
-input CreateTaskInput {
-  """Example field (placeholder)"""
-  id: Int!
-  title: String!
+type Query {
+  task(id: Int!): Task!
+  tasks: [Task!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+type Task {
+  created_date: DateTime!
   description: String!
+
+  """"""
+  id: Int!
   status: String!
+  title: String!
+  updated_date: DateTime!
+  user: User!
+  userId: Float!
 }
 
 input UpdateTaskInput {
-  id: Int!
-  title: String
   description: String
+  id: Int!
   status: String
+  title: String
+  userId: Float
+}
+
+input UpdateUserInput {
+  email: String
+  id: Int!
+  name: String
+  password: String
+}
+
+type User {
+  authenticated: Boolean!
+  created_date: DateTime!
+  email: String!
+
+  """Example field (placeholder)"""
+  id: Int!
+  name: String!
+  password: String!
+  tasks: [Task!]
+  updated_date: DateTime!
 }
